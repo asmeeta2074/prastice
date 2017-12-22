@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Django Project">
+    <meta name="author" content="Anish Chapagain">
+    <title>Election:{{ title }}</title>
+    <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link href="{% static "css/dashboard.css" %}" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    {% load static %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script type="text/javascript" src="{% static "fusioncharts/fusioncharts.js" %}"></script>
+    <script type="text/javascript" src="{% static "fusioncharts/fusioncharts.charts.js" %}"></script>
+   <script type="text/javascript" src="{% static "fusioncharts/themes/fusioncharts.theme.fint.js" %}"></script>
+    <script type="text/javascript" src={% static "fusioncharts/fusioncharts-jquery-plugin.js" %}></script>
+        <script type="text/javascript" src={% static "fusioncharts/fusioncharts-jquery-plugin.min.js" %}></script>
+
+</head>
+
+<body class="dashboard">
+<div id="container">
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">{{ sitename }}</h1>
+        </div>
+        <div id="user-tools">
+            <p>
+                {% if user.is_authenticated %}
+                    <a href="/admin/" style="color:#c9c496">Admin</a> > >
+                    <a href="/polls/index/"> POLL </a> > >
+                    <a href="/polls/profile/{{ user.username }}" style="color:#fdffee">Profile</a> > >
+                    - - - - Welcome {{ user.username }} <a href="/polls/logout" style="color:#ffae2e">Logout</a>
+                {% else %}
+                    <a href="/polls/"> Election 2074 </a>
+                    <a href="/polls/login" style="color:#19ff94">Login</a>
+                {% endif %}//
+                <a href="/polls/email/" style="color:#fdffee">Contact Email</a>
+
+                - - - -
+               Vote for Nepal Election 2074
+            </p>
+        </div>
+    </div>
+    <div class="breadcrumbs">
+        {% if user.is_authenticated %}
+            <a href="/polls/index/"> POLL </a>
+            >>
+            <a href="/polls/viewall"> View ALL Results </a>
+        {% else %}
+            <a href="/polls/"> POLL </a>
+        {% endif %}
+    </div>
+    <hr/>
+
+    <div id="content" class="colMS">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+<!--
+<div id="footer">
+    <div class="center">
+        <div class="contentinfo">
+
+            <p>T20 Poll System</p>
+            <p>DjangoProject , <a href="http://www.djangoproject.com">DjangoProject.com</a></p>
+        </div>
+    </div>
+</div>
+-->
+</body>
+</html>
+   

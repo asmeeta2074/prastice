@@ -1,0 +1,14 @@
+
+{% extends "polls/base.html" %}
+{% block content %}
+
+{% if latest_choice_list %}
+    <ul>
+    {% for choice in latest_choice_list %}
+        <li><b>{{ choice.id }}</b> - <u>{{ choice.question|title }}</u> - {{ choice.choice_text|title}} -- <b>{{ choice.votes}}</b></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No choices are available.</p>
+{% endif %}
+{% endblock %}
